@@ -1,0 +1,41 @@
+{
+  "name": "grammy-callback-data",
+  "version": "1.0.0",
+  "description": "Type-safe callback data factory for grammY",
+  "main": "dist/index.js",
+  "types": "./dist/callback-data.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "jest"
+  },
+  "keywords": [
+    "grammy",
+    "telegram",
+    "bot",
+    "callback",
+    "typescript"
+  ],
+  "author": "Crimson2k",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/grammy-callback-data.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/grammy-callback-data/issues"
+  },
+  "homepage": "https://github.com/username/grammy-callback-data#readme",
+  "devDependencies": {
+    "typescript": "^4.9.0",
+    "@types/node": "^16.0.0",
+    "jest": "^27.0.0",
+    "@types/jest": "^27.0.0",
+    "ts-jest": "^27.0.0"
+  }
+} 
