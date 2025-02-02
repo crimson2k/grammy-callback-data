@@ -25,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/username/grammy-callback-data.git"
+    "url": "git+https://github.com/crimson2k/grammy-callback-data.git"
   },
   "bugs": {
-    "url": "https://github.com/username/grammy-callback-data/issues"
+    "url": "https://github.com/crimson2k/grammy-callback-data/issues"
   },
-  "homepage": "https://github.com/username/grammy-callback-data#readme",
+  "homepage": "https://github.com/crimson2k/grammy-callback-data#readme",
   "devDependencies": {
     "typescript": "^4.9.0",
     "@types/node": "^16.0.0",
