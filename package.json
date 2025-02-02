@@ -37,5 +37,5 @@
     "prepublishOnly": "npm run build",
     "test": "jest"
   },
-  "types": "./dist/callback-data.d.ts"
+  "types": "./dist/index.d.ts"
 }
