@@ -1,0 +1,41 @@
+{
+  "name": "grammy-callback-data",
+  "version": "2.0.0",
+  "description": "grammY-compatible CallbackData generator",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node && bun x tsc",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "grammy",
+    "telegram",
+    "callback_data",
+    "telegram-bot",
+    "bot",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crimson2k/grammy-callback-data.git"
+  },
+  "author": "Crimson <cezeg@proton.me>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    // Target modern Node runtimes
+    "target": "ESNext",
+    "lib": ["ESNext"],
+
+    // ESM output for Bun/npm
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+
+    // Emit only declaration files
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "dist",
+    "outDir": "dist",
+    "noEmit": false,
+
+    // Compatibility with modern toolchains
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+
+    // Type safety
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    // Optional
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": ["src"]
+}
