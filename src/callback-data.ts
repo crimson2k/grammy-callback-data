@@ -32,9 +32,6 @@ export class CallbackData<S extends Schema> {
 
   public unpack(payload: string): InferSchema<S> {
     const parts = payload.split(":");
-    // if (parts[0] !== this.prefix || parts.length !== this.keys.length + 1) {
-    //   return null;
-    // }
 
     const values = parts.slice(1);
     const result: Partial<InferSchema<S>> = {};
