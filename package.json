@@ -1,21 +1,33 @@
 {
   "name": "grammy-callback-data",
-  "version": "2.0.7",
-  "description": "grammY-compatible CallbackData generator",
+  "version": "2.1.0",
+  "description": "Type-safe callback data for grammY bots",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": {
+        "import": "./dist/index.d.ts",
+        "require": "./dist/index.d.cts"
+      },
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     }
   },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node && bun x tsc",
-    "prepublishOnly": "bun run build"
+    "build": "tsup && tsc -p tsconfig.build.json && cp dist/index.d.ts dist/index.d.cts && cp dist/index.d.ts.map dist/index.d.cts.map",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build"
   },
   "keywords": [
     "grammy",
@@ -27,18 +39,22 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/crimson2k/grammy-callback-data.git"
+    "url": "git+https://github.com/crimson2k/grammy-callback-data.git"
   },
+  "bugs": {
+    "url": "https://github.com/crimson2k/grammy-callback-data/issues"
+  },
+  "homepage": "https://github.com/crimson2k/grammy-callback-data#readme",
   "author": "Crimson <cezeg@proton.me>",
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@11.8.0",
   "devDependencies": {
-    "@types/bun": "latest",
-    "typescript": "^5.0.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "files": [
-    "dist"
-  ]
+    "@types/node": "^22.15.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
 }

@@ -1,10 +1,14 @@
 # grammy-callback-data
 
-Type-safe utility for handling callback data in [grammY](https://grammy.dev/) bots.
+Type-safe utility for packing, unpacking, and filtering Telegram `callback_data` in [grammY](https://grammy.dev/) bots.
+
+Works with both ESM and CommonJS. Requires Node.js 18+.
 
 ## Installation
 
 ```bash
+pnpm add grammy-callback-data
+# or
 npm install grammy-callback-data
 # or
 bun add grammy-callback-data
@@ -16,17 +20,17 @@ bun add grammy-callback-data
 import { Bot, InlineKeyboard } from "grammy";
 import { CallbackData, t } from "grammy-callback-data";
 
-// 1. Define your callback data
+// 1. Define your callback data schema
 const PostCD = new CallbackData("post", {
-  action: t.string,
-  postId: t.number,
-  isConfirmed: t.boolean,
+  action: t.string(),
+  postId: t.number(),
+  isConfirmed: t.boolean(),
 });
 
-// 2. Create keyboard with callback data
+// 2. Create keyboard with packed callback data
 const keyboard = new InlineKeyboard()
-  .text("👍 Like", PostCD.pack({ action: "like", postId: 123 }))
-  .text("❌ Delete", PostCD.pack({ action: "delete", postId: 123 }));
+  .text("👍 Like", PostCD.pack({ action: "like", postId: 123, isConfirmed: false }))
+  .text("❌ Delete", PostCD.pack({ action: "delete", postId: 123, isConfirmed: false }));
 
 // 3. Use keyboard in your bot
 bot.command("post", async (ctx) => {
@@ -48,7 +52,7 @@ bot.callbackQuery(PostCD.filter({ action: "delete" }), async (ctx) => {
   if (!isConfirmed) {
     const confirmKeyboard = new InlineKeyboard().text(
       "Confirm Delete",
-      PostCD.pack({ action: "delete", postId, isConfirmed: true })
+      PostCD.pack({ action: "delete", postId, isConfirmed: true }),
     );
 
     await ctx.reply("Are you sure?", {
@@ -63,21 +67,21 @@ bot.callbackQuery(PostCD.filter({ action: "delete" }), async (ctx) => {
 
 ## Features
 
-- 🔒 Type-safe callback data handling with TypeScript
-- 🎯 Built-in data validation
-- 🔍 Powerful filtering by action and fields
-- 💪 Support for string, number and boolean values
-- 🎭 Compact data format for Telegram's 64-byte limit
+- Type-safe callback data handling with TypeScript
+- Compact `prefix:value:...` format for Telegram's 64-byte limit
+- Built-in serializers for `string`, `number`, and `boolean`
+- RegExp filters for `bot.callbackQuery(...)`
+- Dual ESM / CJS publish with source maps
 
 ## API
 
 ### Creating Callback Data
 
 ```typescript
-const callback = new CallbackData(prefix, {
-  field1: { type: DataType.string },
-  field2: { type: DataType.number, required: false },
-  field3: { type: DataType.boolean },
+const callback = new CallbackData("prefix", {
+  field1: t.string(),
+  field2: t.number(),
+  field3: t.boolean(),
 });
 ```
 
@@ -89,6 +93,7 @@ const data = callback.pack({
   field2: 123,
   field3: true,
 });
+// => "prefix:value:123:1"
 ```
 
 ### Unpacking Data
@@ -107,9 +112,13 @@ bot.callbackQuery(callback.filter(), handler);
 bot.callbackQuery(callback.filter({ field1: "value" }), handler);
 ```
 
-## Documentation
+## Development
 
-For detailed documentation and examples, visit the [package directory](./).
+```bash
+pnpm install
+pnpm test
+pnpm build
+```
 
 ## License
 

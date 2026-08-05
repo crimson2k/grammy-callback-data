@@ -1,36 +1,24 @@
 {
   "compilerOptions": {
-    // Target modern Node runtimes
-    "target": "ESNext",
-    "lib": ["ESNext"],
-
-    // ESM output for Bun/npm
+    "target": "ES2022",
+    "lib": ["ES2022"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
-
-    // Emit only declaration files
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationDir": "dist",
+    "rootDir": ".",
     "outDir": "dist",
-    "noEmit": false,
-
-    // Compatibility with modern toolchains
-    "verbatimModuleSyntax": true,
-    "allowImportingTsExtensions": true,
-
-    // Type safety
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "strict": true,
     "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-
-    // Optional
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noEmit": true,
+    "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["src", "tests", "tsup.config.ts", "vitest.config.ts"]
 }
