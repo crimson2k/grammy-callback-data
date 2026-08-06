@@ -1,6 +1,6 @@
 {
   "name": "grammy-callback-data",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Type-safe callback data for grammY bots",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -17,12 +17,11 @@
     }
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.build.json && cp dist/index.d.ts dist/index.d.cts && cp dist/index.d.ts.map dist/index.d.cts.map",
+    "build": "tsup && tsc -p tsconfig.build.json && cp dist/index.d.ts dist/index.d.cts",
     "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest",
