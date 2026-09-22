@@ -7,10 +7,6 @@ out
 dist
 *.tgz
 
-# code coverage
-coverage
-*.lcov
-
 # logs
 logs
 *.log

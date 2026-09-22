@@ -116,7 +116,6 @@ bot.callbackQuery(callback.filter({ field1: "value" }), handler);
 
 ```bash
 pnpm install
-pnpm test
 pnpm build
 ```
 
