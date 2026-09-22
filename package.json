@@ -1,6 +1,6 @@
 {
   "name": "grammy-callback-data",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Type-safe callback data for grammY bots",
   "type": "module",
   "main": "./dist/index.cjs",
