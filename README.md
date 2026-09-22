@@ -105,12 +105,24 @@ const { field1, field2, field3 } = callback.unpack(ctx.callbackQuery.data);
 ### Filtering Callbacks
 
 ```typescript
-// Filter by prefix only
+// Match the prefix and schema field count
 bot.callbackQuery(callback.filter(), handler);
 
 // Filter by specific fields
 bot.callbackQuery(callback.filter({ field1: "value" }), handler);
 ```
+
+### Format and Validation
+
+- The format is `prefix:value:...`, with fields in schema key order. An empty schema packs to the prefix alone.
+- Prefixes must be non-empty. Neither prefixes nor serialized field values may contain `:`; values are not escaped or encoded.
+- Strings must be strings; empty strings are supported by packing, unpacking, and filtering.
+- Numbers must be finite. Parsing uses `Number()` but rejects empty or whitespace-only strings, `NaN`, and infinity. Negative numbers, fractions, and exponential notation are supported.
+- Booleans must be booleans and are encoded as `0` or `1`; other representations are rejected when unpacking.
+- `pack()` enforces Telegram's 64-byte UTF-8 limit, including the prefix and separators. Unicode characters may occupy multiple bytes.
+- `unpack()` requires an exact prefix and field count. `filter()` matches the whole payload, treating supplied values literally; it checks structure and conditions, while `unpack()` validates field values.
+
+Invalid inputs throw an `Error` describing the cause. Custom serializers follow the same `parse(value: string)` / `serialize(value)` contract; their serialized values must also be colon-free and fit within the total payload limit.
 
 ## Development
 
